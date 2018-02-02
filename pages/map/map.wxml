@@ -1,0 +1,5 @@
+<!--pages/map/map.wxml-->
+<view>
+  <text>地图</text>
+</view>
+

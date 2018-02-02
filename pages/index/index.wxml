@@ -1,13 +1,30 @@
-<!--index.wxml-->
+<!--index.wxml--> 
 <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="content-wrap">
+    <view class="table-row">
+      <view class="table-column color-{{tableArr[0] ? tableArr[0] : 0}}">{{tableArr[0] ? tableArr[0] : 0}}</view>
+      <view class="table-column color-{{tableArr[1] ? tableArr[1] : 0}}">{{tableArr[1] ? tableArr[1] : 0}}</view>
+      <view class="table-column color-{{tableArr[2] ? tableArr[2] : 0}}">{{tableArr[2] ? tableArr[2] : 0}}</view>
+    </view>
+    <view class="table-row">
+      <view class="table-column color-{{tableArr[3] ? tableArr[3] : 0}}">{{tableArr[3] ? tableArr[3] : 0}}</view>
+      <view class="table-column color-{{tableArr[4] ? tableArr[4] : 0}}">{{tableArr[4] ? tableArr[4] : 0}}</view>
+      <view class="table-column color-{{tableArr[5] ? tableArr[5] : 0}}">{{tableArr[5] ? tableArr[5] : 0}}</view>
+    </view>
+    <view class="table-row">
+      <view class="table-column color-{{tableArr[6] ? tableArr[6] : 0}}">{{tableArr[6] ? tableArr[6] : 0}}</view>
+      <view class="table-column color-{{tableArr[7] ? tableArr[7] : 0}}">{{tableArr[7] ? tableArr[7] : 0}}</view>
+      <view class="table-column color-{{tableArr[8] ? tableArr[8] : 0}}">{{tableArr[8] ? tableArr[8] : 0}}</view>
+    </view>
+  </view>
+  <view class="content-foot">
+    <button type='primary' loading='{{loading}}' bindtap="changeColor">随机换色</button>
   </view>
 </view>

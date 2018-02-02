@@ -1,13 +1,14 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
+    loading: false,
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    tableArr: null
   },
   //事件处理函数
   bindViewTap: function() {
@@ -28,7 +29,7 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
-        })
+        })        
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -42,6 +43,25 @@ Page({
         }
       })
     }
+  },
+  changeColor: function(e){
+    var randomArr = [];
+    var count = 0;
+    var num = 0;    
+    this.setData({
+      loading: true
+    });
+
+    while (count<9){
+      num = Math.round(Math.random() * 9+1);
+      randomArr.push(num);
+      count++;
+    }
+    console.log(randomArr)
+    this.setData({
+      loading: false,
+      tableArr: randomArr
+    });
   },
   getUserInfo: function(e) {
     console.log(e)
