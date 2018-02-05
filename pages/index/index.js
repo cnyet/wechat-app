@@ -8,7 +8,12 @@ Page({
     loading: false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    tableArr: null
+    tableObj: {
+      1: new Array(3),
+      2: new Array(3),
+      3: new Array(3)
+    }
+    
   },
   //事件处理函数
   bindViewTap: function() {
@@ -53,14 +58,18 @@ Page({
     });
 
     while (count<9){
-      num = Math.round(Math.random() * 9+1);
+      num = Math.round(Math.random() * 9);
       randomArr.push(num);
       count++;
     }
     console.log(randomArr)
     this.setData({
       loading: false,
-      tableArr: randomArr
+      tableObj: {
+        1: randomArr.slice(0,3),
+        2: randomArr.slice(3, 6),
+        3: randomArr.slice(6, 9)
+      }
     });
   },
   getUserInfo: function(e) {

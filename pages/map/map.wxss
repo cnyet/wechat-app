@@ -1,1 +1,15 @@
 /* pages/map/map.wxss */
+.map{
+  width: 100%; 
+  height: 800rpx;
+}
+.locationTxt{
+  display: block;
+  margin: 60rpx 30rpx;
+  font-size: 14px;
+}
+.locationBtn{
+  width: 300rpx;
+  height: 80rpx;
+  font-size: 14px;
+}

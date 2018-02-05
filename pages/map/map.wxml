@@ -1,5 +1,17 @@
 <!--pages/map/map.wxml-->
+<map id="map" 
+    longitude="121.4997200000" 
+    latitude="31.2396900000" 
+    scale="14" 
+    markers="{{markers}}" 
+    bindmarkertap="markertap" 
+    polyline="{{polyline}}" 
+    bindregionchange="regionchange" 
+    show-location 
+    class="map"></map>
+
 <view>
-  <text>地图</text>
+  <text class='locationTxt'>你当前位置：{{location}}</text>
+  <button class='locationBtn' type='primary' bindtap="getMyLocation">获取你的位置</button>
 </view>
 
