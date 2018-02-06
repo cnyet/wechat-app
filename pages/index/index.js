@@ -9,11 +9,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     tableObj: {
-      1: new Array(3),
-      2: new Array(3),
-      3: new Array(3)
-    }
-    
+      1: new Array(4),
+      2: new Array(4),
+      3: new Array(4)
+    },
+    zodiac: ["子鼠", "丑牛", "寅虎", "卯兔", "辰龙", "巳蛇", "午马", "未羊", "申猴", "酉鸡", "戌狗", "亥猪"]
   },
   //事件处理函数
   bindViewTap: function() {
@@ -57,8 +57,8 @@ Page({
       loading: true
     });
 
-    while (count<9){
-      num = Math.round(Math.random() * 9);
+    while (count<12){
+      num = Math.round(Math.random() * 11);
       randomArr.push(num);
       count++;
     }
@@ -66,9 +66,9 @@ Page({
     this.setData({
       loading: false,
       tableObj: {
-        1: randomArr.slice(0,3),
-        2: randomArr.slice(3, 6),
-        3: randomArr.slice(6, 9)
+        1: randomArr.slice(0,4),
+        2: randomArr.slice(4, 8),
+        3: randomArr.slice(8, 12)
       }
     });
   },

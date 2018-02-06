@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    location: null,
+    region: "",
+    location: "",
+    address: "",
     markers: [{
       iconPath: "/static/location.png",
       id: 0,
@@ -39,24 +41,51 @@ Page({
     console.log(e.controlId)
   },
   getMyLocation: function () {
+    var self = this;
+    wx.showLoading({
+      title: "正在加载..."
+    });
     wx.getLocation({
       type: '',
       altitude: true,
-      success: function (res) {        
-        wx.openLocation({
-          latitude: res.latitude,
-          longitude: res.longitude,
-          scale: 28,
-          name: "你当前的位置",
-          address: "坐标"
-        });
+      success: function (res) {   
+        var lat = res.latitude;
+        var lon = res.longitude;
+        // 调用接口
+        qqmapsdk.search({
+          keyword: '上海',
+          page_size: 5,
+          success: function (res) {    
+            console.log(lat, lon)        
+            var title = res.data.length ? res.data[0].address : "";           
+            wx.openLocation({
+              latitude: lat,
+              longitude: lon,
+              scale: 28,
+              name: "你当前的位置",
+              address: title
+            });            
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: res.message
+            });
+          },
+          complete: function (res) { 
+            wx.hideLoading();           
+            console.log("ok");
+          }
+        })     
+        
       },
       fail: function (res) {
         wx.showToast({
           title: "当前位置获取失败"
         });
       },
-      complete: function (res) { },
+      complete: function (res) {
+
+      }
     })
   },
   /**
@@ -66,6 +95,9 @@ Page({
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'V7PBZ-XBZWU-EI3VN-BTZVJ-64PCS-WBF2G'
+    });
+    wx.showLoading({
+      title: "正在加载..."
     });
   },
   /**
@@ -79,17 +111,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var  self = this;
     // 调用接口
     qqmapsdk.search({
-      keyword: '酒店',
+      keyword: '上海',
+      location: {
+        longitude: 121.4997200000,
+        latitude: 31.2396900000
+      },
+      page_size: 5,
       success: function (res) {
+        var region = res.region.title;
+        var title = res.data.length ? res.data[0].title : "";
+        self.setData({
+          region: region,
+          location: title          
+        })
         console.log(res);
       },
       fail: function (res) {
-        console.log(res);
+        wx.showToast({
+          title: res.message
+        });
       },
       complete: function (res) {
-        console.log(res);
+        wx.hideLoading();
+        console.log("ok");
       }
     })
   },

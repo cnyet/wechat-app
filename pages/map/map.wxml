@@ -11,7 +11,8 @@
     class="map"></map>
 
 <view>
-  <text class='locationTxt'>你当前位置：{{location}}</text>
-  <button class='locationBtn' type='primary' bindtap="getMyLocation">获取你的位置</button>
+  <text class='locationTxt'>当前所属地区：{{region}}</text>
+  <text class='locationTxt'>当前标注位置：{{location}}</text>
+  <button class='locationBtn' type='primary' bindtap="getMyLocation">查看你的位置</button>
 </view>
 

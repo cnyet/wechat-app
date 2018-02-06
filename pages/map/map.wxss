@@ -5,7 +5,7 @@
 }
 .locationTxt{
   display: block;
-  margin: 60rpx 30rpx;
+  margin: 30rpx;
   font-size: 14px;
 }
 .locationBtn{
