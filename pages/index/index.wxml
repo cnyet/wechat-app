@@ -9,10 +9,10 @@
   </view>
   <view class="content-wrap">
     <view class="content-row" wx:for="{{tableObj}}" wx:for-item="i" wx:key="index">
-      <view class="table-column color-{{item ? item : 0}}" wx:for="{{i}}" wx:key="index">{{item ? item : 0}}</view>
+      <view class="table-column color-{{item.num ? item.num : 0}}" wx:for="{{i}}" wx:key="index">{{item.name ? item.name : ''}}</view>
     </view>
   </view>
   <view class="content-foot">
-    <button type='primary' loading='{{loading}}' bindtap="changeColor">随机顺序</button>
+    <button type='primary' loading='{{loading}}' bindtap="changeColor">随机生肖</button>
   </view>
 </view>

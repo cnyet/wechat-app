@@ -39,41 +39,46 @@
   width: 100rpx;
   height: 100rpx;
   font-size: 14px;
-  color: #999;
+  color: #fff;
   background-color: #f8f8f9;
   border: 1rpx #fff solid;
 }
-.table-column.color-0{
-  background-color: #f8f8f9;
-}
 .table-column.color-1{
-  background-color: #CC0033;
+  background-color: #990066;
 }
 .table-column.color-2{
-  background-color: #CC6600;
+  background-color: #FFCC00;
 }
 .table-column.color-3{
-  background-color: #FFCC33;
+  background-color: #CC0033;
 }
 .table-column.color-4{
-  background-color: #669900;
+  background-color: #FFCC00;
 }
 .table-column.color-5{
-  background-color: #0033CC;
+  background-color: #009999;
 }
 .table-column.color-6{
-  background-color: #33CCCC;
+  background-color: #CC3366;
 }
 .table-column.color-7{
-  background-color: #6633FF;
+  background-color: #CC3333;
 }
 .table-column.color-8{
-  background-color: #FF99FF;
+  background-color: #FFCCCC;
 }
 .table-column.color-9{
-  background-color: #663333;
+  background-color: #99CC00;
 }
-
+.table-column.color-10{
+  background-color: #003399;
+}
+.table-column.color-11{
+  background-color: #FF9933;
+}
+.table-column.color-12{
+  background-color: #006600;
+}
 .content-foot{
   width: 100%;
   display: flex;

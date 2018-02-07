@@ -52,17 +52,24 @@ Page({
   changeColor: function(e){
     var randomArr = [];
     var count = 0;
-    var num = 0;    
+    var num = 0;   
+    var temp = ""; 
     this.setData({
       loading: true
     });
-
+    this.data.zodiac.forEach(function(item, index){
+      randomArr.push({
+        num: index+1,
+        name: item 
+      })
+    })
     while (count<12){
       num = Math.round(Math.random() * 11);
-      randomArr.push(num);
+      temp = randomArr[num];
+      randomArr[num] = randomArr[count];
+      randomArr[count] = temp;      
       count++;
     }
-    console.log(randomArr)
     this.setData({
       loading: false,
       tableObj: {
