@@ -46,37 +46,51 @@ Page({
       title: "正在加载..."
     });
     wx.getLocation({
-      type: '',
+      type: 'wgs84',
       altitude: true,
       success: function (res) {   
+        console.log(res);
         var lat = res.latitude;
         var lon = res.longitude;
         // 调用接口
-        qqmapsdk.search({
-          keyword: '上海',
-          page_size: 5,
-          success: function (res) {    
-            console.log(lat, lon)        
-            var title = res.data.length ? res.data[0].address : "";           
-            wx.openLocation({
-              latitude: lat,
-              longitude: lon,
-              scale: 28,
-              name: "你当前的位置",
-              address: title
-            });            
+        // qqmapsdk.search({
+        //   keyword: '号',
+        //   page_size: 5,
+        //   success: function (res) {    
+        //     console.log(lat, lon)        
+        //     var title = res.data.length ? res.data[0].address : "";                       console.log(title);
+        //     wx.openLocation({
+        //       latitude: lat,
+        //       longitude: lon,
+        //       scale: 28,
+        //       name: "你当前的位置",
+        //       address: title
+        //     });            
+        //   },
+        //   fail: function (res) {
+        //     wx.showToast({
+        //       title: res.message
+        //     });
+        //   },
+        //   complete: function (res) { 
+        //     wx.hideLoading();           
+        //   }
+        // })     
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: 39.984060,
+            longitude: 116.307520
           },
-          fail: function (res) {
-            wx.showToast({
-              title: res.message
-            });
+          success: function (res){
+            console.log(res);
           },
-          complete: function (res) { 
-            wx.hideLoading();           
-            console.log("ok");
+          fail: function (error) {
+            console.error(error);
+          },
+          complete: function (res) {
+            wx.hideLoading(); 
           }
-        })     
-        
+        })
       },
       fail: function (res) {
         wx.showToast({
@@ -115,10 +129,10 @@ Page({
     // 调用接口
     qqmapsdk.search({
       keyword: '上海',
-      location: {
-        longitude: 121.4997200000,
-        latitude: 31.2396900000
-      },
+      // location: {
+      //   longitude: 121.4997200000,
+      //   latitude: 31.2396900000
+      // },
       page_size: 5,
       success: function (res) {
         var region = res.region.title;
