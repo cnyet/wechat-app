@@ -1,0 +1,25 @@
+/**
+ * 自适应样式
+ */
+@media screen and (max-width: 319px) {
+    html {font-size: 30px;}
+}
+// 大于320px小于等于375px
+@media screen and (min-width: 320px) and (max-width:375px) {
+    html {font-size: 32px;}
+}
+// 大于等于375px小于414px
+@media screen and (min-width: 375px) and (max-width:414px) {
+    html {font-size: 37.5px;}
+}
+// 大于等于414px
+@media screen and (min-width: 414px) {
+    html {font-size: 41.4px;}
+}
+body{
+  font-size: 16px;
+}
+
+@function px2rem($px) {
+   @return $px / 37.5 / 2 * 1rem;
+}

@@ -1,0 +1,22 @@
+/**
+ * 等比缩放
+ */
+@function px2px ($px) {
+   @return $px * / 37.5 / 2 * 1rem;
+}
+@function px2rem($px) {
+   @return $px / 37.5 / 2 * 1rem;
+}
+body{
+  font-size: 16px;
+}
+html[data-dpr="2"] {
+  body{
+    font-size: 32px;
+  }
+}
+html[data-dpr="3"] {
+  body{
+    font-size: 48px;
+  }
+}
