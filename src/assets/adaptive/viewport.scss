@@ -21,16 +21,3 @@ html {
     font-size: 108px;
   }
 }
-
-// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
-body {
-  max-width: 540px;
-  min-width: 320px;
-  margin: 0 auto;
-  background: #e8e8ed;
-  font-size: 14px;
-  font-family: -apple-system,Helvetica,sans-serif;
-  line-height: 1.5;
-  color: #666;
-}
-
