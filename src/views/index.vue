@@ -29,9 +29,9 @@ export default {
     checkuserAuth() {
       const openId = this.$cookie.get('openId');
       if (!openId) {
-        location.href = API.wechatRedirect;
+        location.href = 'http://m.yates.com' + API.wechatRedirect;
       } else {
-        this.getWechatConfig();
+        // this.getWechatConfig();
       }
     },
     getWechatConfig() {

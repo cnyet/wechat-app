@@ -13,7 +13,6 @@ Vue.use(VueCookie);
 Vue.use(VueAxios, axios);
 // 在请求或响应被 then 或 catch 处理前添加拦截器
 axios.interceptors.request.use(function(config) {
-  console.log(config);
   return config;
 }, function(error) {
   console.log(error);
