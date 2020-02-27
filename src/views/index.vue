@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <header class="header">
-      <img class="logo" alt="Vue logo" src="../assets/images/logo.png">
+      <img class="logo" alt="avatar" :src="avatar">
+      <p class="userName">{{userName}}</p>
     </header>
     <footer class="footer">
       <a href="javascript:;" class="weui-btn weui-btn_primary">分享</a>
@@ -14,10 +15,17 @@
 // import CONFIG from '../config';
 import API from '../api';
 import wx from 'weixin-js-sdk';
-import UTILS from '../utils';
+import { httpRequest, initShareInfo } from '../utils';
+import COMMON from '../common';
 
 export default {
   name: 'Home',
+  data: function() {
+    return {
+      userName: '',
+      avatar: ''
+    };
+  },
   mounted() {
     this.checkuserAuth();
     // const APPID = CONFIG.APPID;
@@ -29,14 +37,13 @@ export default {
     checkuserAuth() {
       const openId = this.$cookie.get('openId');
       if (!openId) {
-        location.href = 'http://m.yates.com' + API.wechatRedirect;
+        location.href = COMMON.HOME + API.wechatRedirect;
       } else {
-        // this.getWechatConfig();
+        this.getUserInfo();
       }
     },
     getWechatConfig() {
-      console.log('ok');
-      this.$http.get(API.wechatConfig + '?url='+location.origin).then(function(response){
+      httpRequest.getByParam(API.wechatConfig + '?url='+location.origin).then(function(response){
         const res = response.data;
         if (res.code === 0) {
           const data = res.date;
@@ -50,10 +57,19 @@ export default {
           });
           //需在用户可能点击分享按钮前就先调用
           wx.ready(function () {
-            UTILS.InitShareInfo();
+            initShareInfo();
           });
         }
       }).catch(function(err){
+        console.log(err);
+      });
+    },
+    getUserInfo() {
+      httpRequest.getByParam(API.getUserInfo).then(res =>{
+        const data = res.data;
+        this.userName = data.nickname;
+        this.avatar = data.headimgurl;
+      }).catch(err => {
         console.log(err);
       });
     }
@@ -73,9 +89,14 @@ export default {
   .logo {
     width: px2rem(160);
   }
+  .userName{
+    padding: 10px;
+  }
   .header{
     flex: 50%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
   .footer{

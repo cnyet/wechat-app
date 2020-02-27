@@ -1,6 +1,6 @@
 import wx from 'weixin-js-sdk';
 
-export function InitShareInfo() {
+export function initShareInfo() {
   const shareInfo = {
     title: '分享标题', // 分享标题
     desc: '分享描述', // 分享描述
