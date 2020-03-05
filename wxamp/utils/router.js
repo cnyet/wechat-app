@@ -4,7 +4,7 @@
 const RouterPath = {
   'index': '/pages/index/index',
   'pay': '/pages/pay/index',
-  'activity': '/page/activity/index'
+  'activity': '/pages/activity/index'
 };
 module.exports = {
   // 页面跳转
@@ -15,9 +15,11 @@ module.exports = {
       option = path;
     }
     let url = RouterPath[option.path];
-    let { query={}, openType, duration } = option;
-    let params = this.parse(query);
-    url += '?' + params;
+    let { query, openType, duration } = option;
+    if (query) {
+      let params = this.parse(query);
+      url += '?' + params;
+    }
     // 如果需要延迟的话
     if (duration) {
       setTimeout(() => {

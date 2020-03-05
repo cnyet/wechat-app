@@ -1,2 +1,5 @@
 <!--pages/activity/activity.wxml-->
-<text>pages/activity/activity.wxml</text>
+<view class="container">
+  <text>活动详细</text>
+</view>
+

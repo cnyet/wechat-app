@@ -1,2 +1,4 @@
 <!--pages/pay/pay.wxml-->
-<text>pages/pay/pay.wxml</text>
+<view class="container">
+  <text>支付页面</text>
+</view>

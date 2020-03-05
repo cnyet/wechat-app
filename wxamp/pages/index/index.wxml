@@ -1,34 +1,19 @@
 <!--index.wxml-->
-<!-- <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view> -->
-
-<view class="home">
+<view class="container">
   <view class="header">
-    <image class="logo" alt="avatar" src="{{userInfo.avatarUrl}}"></image>
-    <view class="userName">{{userInfo.nickName}}</view>
+    <image class="logo" alt="avatar" src="{{userInfo.avatar}}"></image>
+    <view class="userName">{{userInfo.user_name}}</view>
   </view>
-  <view class="footer">
-    <button class="weui-btn weui-btn_primary" bindtap="wechatShare">分享</button>
-    <button class="weui-btn weui-btn_warn">体验</button>
-    <button class="weui-btn weui-btn_default">活动详情</button>
-  </view>
-  <!--BEGIN toast-->
-  <view v-show="showTips">
-      <view class="weui-mask_transparent"></view>
-      <view class="weui-toast">
-          <icon class="weui-icon-success-no-circle weui-icon_toast"></icon>
-          <view class="weui-toast__content">已完成</view>
-      </view>
-  </view>
-  <!--end toast-->
+  <block wx:if="{{hasUserInfo}}">
+    <view class="footer">
+      <button type="default" class="weui-btn" open-type="share" bindtap="wechatShare">分享</button>
+      <button type="primary" class="weui-btn" bindtap="wechatPay">支付</button>
+      <button type="warn" class="weui-btn" bindtap="wechatActivity">活动详情</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="footer">
+      <button type="primary" class="weui-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
+    </view>
+  </block>
 </view>

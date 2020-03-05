@@ -3,7 +3,6 @@
  */
 let store = require('../utils/store.js');
 let system = store.getSystemInfo();
-console.log(system);
 const clientType = {
   'clientType': 'mp',
   'appName': 'wechat Demo',
@@ -13,41 +12,44 @@ const clientType = {
   'version': App.version
 };
 module.exports = {
-  fetch: function(url, data={},
-  {
-    method='get',
-    loading=true, 
-    toast=true, 
-    isMask=false,
-    isMock=false
+  fetch: function(url, data={}, option={
+    method:'get',
+    loading:true, 
+    toast:true, 
+    isMask:false,
+    isMock:false
     }) {
     return new Promise((resolve, reject) => {
+      let {method, loading, toast, isMock, isMask} = option;
       if (loading) {
         wx.showLoading({
           title: '加载中...',
         });
       }
-      let errMsg = '出现异常';
       let env = isMock ? App.config.mockApi : App.config.baseApi;
       wx.request({
         url: env + url,
         data,
         method,
-        header: {
-          'clientInfo': JSON.stringify(clientInfo)
-        },
+        header: option,
         success: function (result) {
           let res = result.data;
-          if (res.code === 0) {
-            if (loading) {
+          if (result.statusCode === 200) {
+            if (toast) {
+              wx.showToast({
+                mask: true,
+                title: res.message || result.errMsg,
+                icon: 'none'
+              });
+            } else {
               wx.hideLoading();
             }
-            resolve(res.data);
+            resolve(res);
           } else {
             if (toast) {
               wx.showToast({
                 mask: true,
-                title: res.message,
+                title: res.message || result.errMsg,
                 icon: 'none'
               });
             } else {
@@ -56,7 +58,7 @@ module.exports = {
             reject(res);
           }
         },
-        fail: function (err={code: -1, msg: errMsg, errMsg}) {
+        fail: function (err = { code: -1, msg: errMsg, errMsg: '出现异常'}) {
           reject(err);
           wx.showToast({
             title: err.errMsg,
